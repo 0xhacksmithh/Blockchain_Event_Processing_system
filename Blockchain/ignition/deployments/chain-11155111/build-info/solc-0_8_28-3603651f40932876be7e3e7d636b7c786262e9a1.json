@@ -1,0 +1,49 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-3603651f40932876be7e3e7d636b7c786262e9a1",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "compilerType": "solc",
+  "toolVersions": {
+    "hardhat": "3.8.0"
+  },
+  "userSourceNameMap": {
+    "contracts/PaymentProcessor.sol": "project/contracts/PaymentProcessor.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode.linkReferences",
+            "evm.bytecode.object",
+            "evm.bytecode.opcodes",
+            "evm.bytecode.sourceMap",
+            "evm.deployedBytecode.immutableReferences",
+            "evm.deployedBytecode.linkReferences",
+            "evm.deployedBytecode.object",
+            "evm.deployedBytecode.opcodes",
+            "evm.deployedBytecode.sourceMap",
+            "evm.methodIdentifiers"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/PaymentProcessor.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.28;\r\n\r\ncontract PaymentProcessor {\r\n\r\n    uint256 public paymentCounter;\r\n\r\n    event PaymentReceived(\r\n        uint256 indexed paymentId,\r\n        address indexed payer,\r\n        uint256 amount,\r\n        uint256 timestamp\r\n    );\r\n\r\n    function pay() external payable {\r\n\r\n        require(msg.value > 0, \"Amount required\");\r\n\r\n        paymentCounter++;\r\n\r\n        emit PaymentReceived(\r\n            paymentCounter,\r\n            msg.sender,\r\n            msg.value,\r\n            block.timestamp\r\n        );\r\n    }\r\n}"
+      }
+    }
+  }
+}
